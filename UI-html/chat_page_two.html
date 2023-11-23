@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.chatBox {
+			width: 100%;
+			height: 100vh;
+			background: url('img/chatBack.png');
+			background-size: 100% 100%;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.chatLeft {
+			width: 50%;
+			height: 80%;
+			background: rgba(255, 255, 255, 0.5);
+			background-size: 100% 100%;
+			box-shadow: 8px 7px 10px 1px rgb(0 188 212 / 26%);
+
+
+		}
+
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 1.5rem 2rem;
+			height: 10%;
+
+
+		}
+
+		.header p {
+			text-align: center;
+			width: 100%;
+			font-weight: 800;
+			color: #fff;
+			font-size: 1.5rem;
+		}
+
+		.header .operate {
+			margin-left: auto;
+			width: 5rem;
+
+
+		}
+
+		.header .operate img {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		.chatListBox {
+			padding: 3rem;
+			height: 75%;
+			border-top: 1px solid #e6e6e6;
+
+
+		}
+
+		.chatList {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 1rem;
+			flex-direction: column;
+
+		}
+
+		.chatList img {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			margin-right: 0.5rem;
+		}
+
+		.chatList .userInfo {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		.chatList .userInfo p {
+			text-align: left;
+			font-size: 1.5rem;
+			color: #000;
+		}
+
+		.chatList .text .desc {
+			background: rgb(107 67 179);
+			border-radius: 1rem;
+			padding: 1rem;
+			box-sizing: border-box;
+			margin-top: 1rem;
+			color: #fff;
+			font-size: 1.5rem;
+		}
+
+		.userChat {
+			text-align: right;
+			justify-content: flex-end;
+			align-items: flex-end;
+			width: 100%;
+		}
+
+		.userChat .userInfo img {
+			margin-left: 1rem;
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			margin-right: 0.5rem;
+		}
+
+		.userChat .desc {
+			background: rgb(51 0 142 / 71%) !important;
+			color: #fff !important;
+		}
+
+		.chatInput {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-top: 1px solid ghostwhite;
+			height: 15%;
+		}
+
+		.chatInput button {
+			width: 70px;
+			height: 50px;
+			line-height: 50px;
+			border-radius: 0px 30px 30px 0px;
+			font-size: 1.5rem;
+			border: 0;
+			background-color: #fff;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+		}
+
+		.chatInput input {
+			width: 80%;
+			height: 50px;
+			background-color: #fff;
+			border-radius: 30px 0px 0px 30px;
+			border: 0;
+			font-size: 1rem;
+			outline:none;
+			padding-left: 20px;
+		}
+
+		.chatInput input:focus-visible {
+			border: none!important;
+			outline:none;
+			box-shadow: none;
+		}
+	</style>
+	<body>
+		<div class="chatBox">
+			<div class="chatLeft">
+				<div class="header">
+					<p>Chatting Bot</p>
+				</div>
+				<div class="chatListBox">
+					<ul class="chatListUl">
+						<li class='chatList '>
+							<div class="userInfo">
+								<img src="https://img0.baidu.com/it/u=4175335155,1470430907&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+									alt="">
+								<p>SW Bot</p>
+							</div>
+							<div class="text">
+								<p class="desc" v-html="item.desc">Please input the content</p>
+							</div>
+						</li>
+						<li class='userChat chatList'>
+							<div class="userInfo">
+								<p>id xxxx</p>
+								<img src="https://img0.baidu.com/it/u=2898374702,3176062131&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+									alt="">
+							</div>
+							<div class="text">
+								<p class="desc" v-html="item.desc">Hello！</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="chatInput">
+					<input type="text" value="" id="chatText" placeholder="Please input the content">
+					<button onclick="chat()">
+						<svg t="1700492493265" class="icon" viewBox="0 0 1024 1024" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" p-id="6367" width="32" height="32">
+							<path
+								d="M244.352 418.432l323.498667 43.733333 40.576 315.136 239.317333-600.746666-603.392 241.92z m-130.816 47.786667a29.312 29.312 0 0 1-18.773333-8.661334 32.554667 32.554667 0 0 1-9.088-19.285333 31.146667 31.146667 0 0 1 19.754666-34.090667l788.906667-316.16a28.629333 28.629333 0 0 1 18.304-2.005333c6.101333 1.322667 11.52 4.394667 16.213333 9.130667 4.693333 4.736 7.765333 10.154667 9.130667 16.256a28.586667 28.586667 0 0 1-2.048 18.346666l-314.368 788.778667a30.976 30.976 0 0 1-13.696 15.786667 32 32 0 0 1-20.778667 4.053333 31.616 31.616 0 0 1-18.773333-9.173333 29.781333 29.781333 0 0 1-8.618667-18.773334l-49.706666-390.357333-396.458667-53.845333z"
+								fill="#000000" fill-opacity=".65" p-id="6368"></path>
+						</svg> </button>
+				</div>
+			</div>
+			<div>
+			</div>
+	</body>
+	<script src="./js/jquery.min.js"></script>
+	<script>
+		function chat() {
+			let chatText = $('#chatText').val();
+			let html = `<li class='userChat chatList'>
+							<div class="userInfo">
+								<p>id xxxx</p>
+								<img src="https://img0.baidu.com/it/u=2898374702,3176062131&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+									alt="">
+							</div>
+							<div class="text">
+								<p class="desc" v-html="item.desc">${chatText}</p>
+							</div>
+						</li>`
+			$('.chatListUl').append(html);
+			$('#chatText').val('')
+		}
+	</script>
+</html>
